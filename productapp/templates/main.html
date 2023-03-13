@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Home Page {% endblock %}
+{% block maincontent %}
+<div class="">
+    <div class="row d-flex ">
+        <a href="{% url 'create' %}" class="btn btn-success mt-3 mb-4 "> Add New Product </a>
+        {% for x in myproducts %}
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card" style="background-color: lightgrey;">
+                <img src="{{x.get_image_url}}" alt="{{x.name}}" class="p-2 rounded" style="height: 200px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center display-6">{{x.name}}</h5>
+                    <p class="card-text fs-5 text-center"> price : {{x.price}} </p>
+                    <div class="d-flex justify-content-evenly">
+                        <a href="{% url 'show' x.id %}" class="btn btn-primary text-center">Show</a>
+                        <a href="{% url 'edit' x.id %}" class="btn btn-warning text-center">Edit</a>
+                        <a href="{% url 'delete' x.id %}" class="btn btn-danger text-center">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

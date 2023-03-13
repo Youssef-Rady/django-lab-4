@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Create New Category{% endblock %}
+<!-- {% load static %} -->
+{% block maincontent %}
+<style>
+    body
+    {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+</style>
+<div class="text-light container">
+<div class="card m-5 bg-dark p-5">
+    <h1>Delete a Category:</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p class="text-center display-4 m-5 col-12">Do you want to Delete {{category}} ?</p>
+        <div class="row justify-content-evenly">
+            <button type="submit" class="btn btn-danger col-5">Delete</button>
+            <a href="{% url 'categories.index' %}" class="btn btn-success col-5">Cancel</a>
+        </div>
+    </form>
+</div>
+<script src="{% static 'productapp/js/script.js' %}"> </script>
+
+</div>
+
+{% endblock %}

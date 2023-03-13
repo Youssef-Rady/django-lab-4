@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} {{category.name}} {% endblock %}
+{% block maincontent %}
+<div class="container-fluid row justify-content-center">
+  <div class="card bg-dark m-5 col-6 p-0">
+      <div class="row text-light justify-content-center m-3"> 
+        <div class=" text-center col-12 m-auto">
+          <img src="{{category.get_image_url}}" alt="{{category.name}}" class="w-100">
+        </div>
+        <div class="col-12 m-2 mt-4">
+          <h5 class="card-title text-light text-center display-4">{{category.name}}</h5>
+          <p class="card-text text-center fs-4"> {{category.description}} </p>
+          <p class="card-text text-center fs-5"> price : {{category.price}} </p>
+          <div class=" text-light text-center">
+          <h5>Category: {{category.category}}</h5>
+            {% for p in category.category.category_posts.all %}
+            {% if p.id != category.id %}
+            <a class="btn btn-light mt-2" href="{% url 'show' p.id %}">{{p}} </a>
+            {% endif %}
+            {% endfor %}
+          </div>
+          <a href="{% url 'categories.index' %}" class="btn btn-primary w-100 mt-3 mb-4">back</a>
+
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 
